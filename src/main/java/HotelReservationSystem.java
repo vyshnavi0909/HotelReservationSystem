@@ -13,8 +13,8 @@ public class HotelReservationSystem {
         this.hotelList = new ArrayList<>();
     }
 
-    public void addHotel(String hotelName, int rate) {
-        Hotel hotel = new Hotel(hotelName, rate);
+    public void addHotel(String hotelName, int weekDay, int weekEnd) {
+        Hotel hotel = new Hotel(hotelName, weekDay, weekEnd);
         hotelList.add(hotel);
     }
 

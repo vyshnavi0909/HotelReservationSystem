@@ -1,15 +1,17 @@
 public class Hotel {
+    private int regWeekDay;
+    private int regWeekEnd;
     private String hotelName;
-    private int rate;
     private int totalPrice;
 
 
     public Hotel() {
     }
 
-    public Hotel(String hotelName, int rate) {
+    public Hotel(String hotelName, int regWeekDay, int reWeekEnd) {
         this.hotelName = hotelName;
-        this.rate = rate;
+        this.regWeekDay = regWeekDay;
+        this.regWeekEnd = reWeekEnd;
     }
 
     public String getHotelName() {
@@ -20,16 +22,32 @@ public class Hotel {
         this.hotelName = hotelName;
     }
 
-    public int getRate() {
-        return rate;
+    public int getRegWeekDay() {
+        return regWeekDay;
     }
 
-    public void setRate(int rate) {
-        this.rate = rate;
+    public void setRegWeekDay(int regWeekDay) {
+        this.regWeekDay = regWeekDay;
+    }
+
+    public int getRegWeekEnd() {
+        return regWeekEnd;
+    }
+
+    public void setRegWeekEnd(int regWeekEnd) {
+        this.regWeekEnd = regWeekEnd;
+    }
+
+    public int getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
     public int calculatingTotalPrice(int numOfDays) {
-        this.totalPrice = numOfDays * rate;
+        this.totalPrice = numOfDays * regWeekDay;
         return totalPrice;
     }
 
