@@ -16,6 +16,10 @@ public class HotelResSysTest {
 
         List<Hotel> cheapestHotelList;
         cheapestHotelList = hotelReservationSystem.getCheapestHotel("11Sep2020", "12Sep2020");
-        System.out.println(cheapestHotelList);
+        System.out.println("Cheapest Hotels: " + cheapestHotelList);
+        List<Hotel> bestRatedHotel;
+        bestRatedHotel = hotelReservationSystem.getBestRatedHotel("11Sep2020", "12Sep2020");
+        System.out.println("Best Rated: " + bestRatedHotel);
     }
 }
+

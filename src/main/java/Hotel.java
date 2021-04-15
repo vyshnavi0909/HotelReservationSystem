@@ -61,6 +61,6 @@ public class Hotel {
     }
 
     public String toString(){
-        return "Cheapest hotel is\n Hotel Name: " + hotelName + "\n Rating: " + rating + "\n Total rate: "  + totalPrice + "$";
+        return "Hotel Name: " + hotelName + ", Rating: " + rating + ", Total rate: "  + totalPrice + "$";
     }
 }

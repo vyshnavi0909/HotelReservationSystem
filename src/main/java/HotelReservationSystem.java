@@ -60,4 +60,27 @@ public class HotelReservationSystem {
         }
 
     }
+
+    public List<Hotel> getBestRatedHotel(String checkin, String checkout){
+        try {
+            Date checkIn = dateFormat.parse(checkin);
+            Date checkOut = dateFormat.parse(checkout);
+            int numOfDays = (int) (((checkOut.getTime() - checkIn.getTime())/ (86.4e6)) + 1);
+            int weekDays = getDay(checkIn, checkOut);
+            int weekEnds = numOfDays - weekDays;
+            int bestRated = 0;
+            List<Hotel> bestRatedHotel = new ArrayList<>();
+            for (Hotel h: hotelList){
+                if (h.getRating() > bestRated){
+                    bestRated = h.getRating();
+                    bestRatedHotel.clear();
+                    bestRatedHotel.add(h);
+                }
+            }
+            return bestRatedHotel;
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
