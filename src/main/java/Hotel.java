@@ -1,6 +1,7 @@
 public class Hotel {
     private String hotelName;
     private int rate;
+    private int totalPrice;
 
 
     public Hotel() {
@@ -25,5 +26,14 @@ public class Hotel {
 
     public void setRate(int rate) {
         this.rate = rate;
+    }
+
+    public int calculatingTotalPrice(int numOfDays) {
+        this.totalPrice = numOfDays * rate;
+        return totalPrice;
+    }
+
+    public String toString(){
+        return hotelName + ", " + totalPrice;
     }
 }

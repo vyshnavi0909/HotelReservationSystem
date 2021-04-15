@@ -11,5 +11,8 @@ public class HotelResSysTest {
         hotelReservationSystem.addHotel("Lakewood", 110);
         hotelReservationSystem.addHotel("Bridgewood", 150);
         hotelReservationSystem.addHotel("Ridgewood", 220);
+
+        Hotel cheapestHotel = hotelReservationSystem.getCheapestHotel("22Sep2020", "24Sep2020");
+        System.out.println("Cheapest hotel : " + cheapestHotel);
     }
 }
