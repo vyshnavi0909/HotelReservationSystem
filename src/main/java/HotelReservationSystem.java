@@ -42,13 +42,14 @@ public class HotelReservationSystem {
 //                    .sorted(Comparator.comparingInt(hotel -> hotel.calculatingTotalPrice(weekDays, weekEnds)))
 //                    .findFirst().orElse(null);
             int min = 99999999;
+            int previousRating = 2;
             for(Hotel c : hotelList){
                 int rate = c.calculatingTotalPrice(weekDays, weekEnds);
-                if(rate < min){
+                int rating = c.getRating();
+                if(rate <= min && rating > previousRating){
+                    previousRating = c.getRating();
                     min = c.getTotalPrice();
                     cheapestHotel.clear();
-                    cheapestHotel.add(c);
-                }else if (rate == min){
                     cheapestHotel.add(c);
                 }
             }
