@@ -1,9 +1,6 @@
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class HotelReservationSystem {
     private SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMMyyyy");
@@ -18,19 +15,48 @@ public class HotelReservationSystem {
         hotelList.add(hotel);
     }
 
-    public Hotel getCheapestHotel(String checkinDate, String checkoutDate) {
+    public int getDay(Date checkin, Date checkout){
+        Calendar startCal = Calendar.getInstance();
+        startCal.setTime(checkin);
+        Calendar endCal = Calendar.getInstance();
+        endCal.setTime(checkout);
+
+        int numOfWeekDay = 0;
+        if(startCal.get(Calendar.DAY_OF_WEEK) != Calendar.SATURDAY && startCal.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY){
+            ++numOfWeekDay;
+        }
+        return numOfWeekDay;
+
+    }
+
+    public List<Hotel> getCheapestHotel(String checkinDate, String checkoutDate) {
         try {
             Date checkin = dateFormat.parse(checkinDate);
             Date checkout = dateFormat.parse(checkoutDate);
 
             int numOfDays = (int) (((checkout.getTime() - checkin.getTime())/ (86.4e6)) + 1);
-            System.out.println("Number of days: " + numOfDays);
-            return hotelList.stream()
-                    .sorted(Comparator.comparingInt(hotel -> hotel.calculatingTotalPrice(numOfDays)))
-                    .findFirst().orElse(null);
+            int weekDays = getDay(checkin, checkout);
+            int weekEnds = numOfDays - weekDays;
+            List<Hotel> cheapestHotel = new ArrayList<>();
+//            return  hotelList.stream()
+//                    .sorted(Comparator.comparingInt(hotel -> hotel.calculatingTotalPrice(weekDays, weekEnds)))
+//                    .findFirst().orElse(null);
+            int min = 99999999;
+            for(Hotel c : hotelList){
+                int rate = c.calculatingTotalPrice(weekDays, weekEnds);
+                if(rate < min){
+                    min = c.getTotalPrice();
+                    cheapestHotel.clear();
+                    cheapestHotel.add(c);
+                }else if (rate == min){
+                    cheapestHotel.add(c);
+                }
+            }
+            return cheapestHotel;
         }catch (NullPointerException | ParseException e) {
             System.out.println("Exception occured: " + e );
+            return null;
         }
-        return null;
+
     }
 }

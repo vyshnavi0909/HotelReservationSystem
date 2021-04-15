@@ -46,8 +46,8 @@ public class Hotel {
         this.totalPrice = totalPrice;
     }
 
-    public int calculatingTotalPrice(int numOfDays) {
-        this.totalPrice = numOfDays * regWeekDay;
+    public int calculatingTotalPrice(int weekDays, int weekEnds) {
+        this.totalPrice = weekDays * regWeekDay + weekEnds * regWeekEnd ;
         return totalPrice;
     }
 
