@@ -1,6 +1,7 @@
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class HotelReservationSystem {
     private SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMMyyyy");
@@ -29,7 +30,7 @@ public class HotelReservationSystem {
 
     }
 
-    public List<Hotel> getCheapestHotel(String checkinDate, String checkoutDate) {
+    public String getCheapestHotel(String checkinDate, String checkoutDate) {
         try {
             Date checkin = dateFormat.parse(checkinDate);
             Date checkout = dateFormat.parse(checkoutDate);
@@ -53,7 +54,9 @@ public class HotelReservationSystem {
                     cheapestHotel.add(c);
                 }
             }
-            return cheapestHotel;
+            return cheapestHotel.stream()
+                    .map(Object::toString)
+                    .collect(Collectors.joining(", "));
         }catch (NullPointerException | ParseException e) {
             System.out.println("Exception occured: " + e );
             return null;
@@ -61,7 +64,7 @@ public class HotelReservationSystem {
 
     }
 
-    public List<Hotel> getBestRatedHotel(String checkin, String checkout){
+    public String getBestRatedHotel(String checkin, String checkout){
         try {
             Date checkIn = dateFormat.parse(checkin);
             Date checkOut = dateFormat.parse(checkout);
@@ -77,9 +80,29 @@ public class HotelReservationSystem {
                     bestRatedHotel.add(h);
                 }
             }
-            return bestRatedHotel;
+            return bestRatedHotel.stream()
+                    .map(Object::toString)
+                    .collect(Collectors.joining(", "));
         } catch (ParseException e) {
             e.printStackTrace();
+            return null;
+        }
+    }
+
+    public Hotel getCheapBestHotelForRewardedCust(String checkin, String checkout) {
+        try {
+            Date checkIn = dateFormat.parse(checkin);
+            Date checkOut = dateFormat.parse(checkout);
+
+            int numOfDays = (int) (((checkOut.getTime() - checkIn.getTime())/ (86.4e6)) + 1);
+            int weekDays = getDay(checkIn, checkOut);
+            int weekEnds = numOfDays - weekDays;
+            return  hotelList.stream()
+                    .sorted(Comparator.comparingInt(hotel -> hotel.calculatingTotalPriceForRewarded(weekDays, weekEnds)))
+                    .findFirst().orElse(null);
+
+        }catch (NullPointerException | ParseException e) {
+            System.out.println("Exception occured: " + e );
             return null;
         }
     }

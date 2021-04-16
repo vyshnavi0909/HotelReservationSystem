@@ -7,6 +7,7 @@ public class Hotel {
     private int totalPrice;
     private int rewardedWeekEnd;
     private int rewardedWeekDay;
+
     public Hotel() {
     }
 
@@ -65,6 +66,11 @@ public class Hotel {
     }
 
     public String toString(){
-        return "Hotel Name: " + hotelName + ", Rating: " + rating + ", Total rate: "  + totalPrice + "$";
+        return "\nHotel Name: " + hotelName + ", Rating: " + rating + ", Total rate: "  + totalPrice + "$";
+    }
+
+    public int calculatingTotalPriceForRewarded(int weekDays, int weekEnds) {
+        this.totalPrice = weekDays * rewardedWeekDay + weekEnds * rewardedWeekEnd ;
+        return totalPrice;
     }
 }
