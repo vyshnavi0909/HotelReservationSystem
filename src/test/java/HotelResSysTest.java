@@ -26,6 +26,8 @@ public class HotelResSysTest {
         //cheap and best hotel for rewarded customers
         Hotel cheapBestHotelForRewarded = hotelReservationSystem.getCheapBestHotelForRewardedCust("11Sep2020", "12Sep2020");
         System.out.println("\nCheap and Best Hotel for rewarded customers: " + cheapBestHotelForRewarded);
+
+
     }
 }
 
