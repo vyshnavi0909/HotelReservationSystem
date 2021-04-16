@@ -10,9 +10,9 @@ public class HotelResSysTest {
 
         HotelReservationSystem hotelReservationSystem = new HotelReservationSystem();
 
-        hotelReservationSystem.addHotel("Lakewood", 110, 90, 3);
-        hotelReservationSystem.addHotel("Bridgewood", 150, 50, 4);
-        hotelReservationSystem.addHotel("Ridgewood", 220, 150, 5);
+        hotelReservationSystem.addHotel("Lakewood", 110, 90, 3, 80, 80);
+        hotelReservationSystem.addHotel("Bridgewood", 150, 50, 4, 110, 50);
+        hotelReservationSystem.addHotel("Ridgewood", 220, 150, 5, 100, 40);
 
         List<Hotel> cheapestHotelList;
         cheapestHotelList = hotelReservationSystem.getCheapestHotel("11Sep2020", "12Sep2020");

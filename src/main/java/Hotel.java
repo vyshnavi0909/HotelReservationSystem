@@ -1,18 +1,22 @@
 public class Hotel {
+
     private int rating;
     private String hotelName;
     private int regWeekDay;
     private int regWeekEnd;
     private int totalPrice;
-
+    private int rewardedWeekEnd;
+    private int rewardedWeekDay;
     public Hotel() {
     }
 
-    public Hotel(String hotelName, int regWeekDay, int regWeekEnd, int rating) {
+    public Hotel(String hotelName, int regWeekDay, int regWeekEnd, int rating, int rewardedWeekDay, int rewardedWeekEnd) {
         this.hotelName = hotelName;
         this.regWeekDay = regWeekDay;
         this.regWeekEnd = regWeekEnd;
         this.rating = rating;
+        this.rewardedWeekDay = rewardedWeekDay;
+        this.rewardedWeekEnd = rewardedWeekEnd;
     }
 
     public String getHotelName() {
