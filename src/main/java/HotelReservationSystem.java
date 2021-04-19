@@ -45,6 +45,7 @@ public class HotelReservationSystem {
             int min = 99999999;
             int previousRating = 2;
             for(Hotel c : hotelList){
+
                 int rate = c.calculatingTotalPrice(weekDays, weekEnds);
                 int rating = c.getRating();
                 if(rate <= min && rating > previousRating){

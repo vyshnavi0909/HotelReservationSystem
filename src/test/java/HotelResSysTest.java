@@ -17,16 +17,15 @@ public class HotelResSysTest {
 
         //cheapest hotel considering ratings for regular customers
         String cheapestHotel = hotelReservationSystem.getCheapestHotel("11Sep2020", "12Sep2020");
-        System.out.println("\nCheapest Hotels: " + cheapestHotel);
-
-        //best rated hotel for regular customers
-        String bestRatedHotel = hotelReservationSystem.getBestRatedHotel("11Sep2020", "12Sep2020");
-        System.out.println("\nBest Rated: " + bestRatedHotel);
+        System.out.println("\nCheap and best rated Hotel for regular customers: " + cheapestHotel);
 
         //cheap and best hotel for rewarded customers
         Hotel cheapBestHotelForRewarded = hotelReservationSystem.getCheapBestHotelForRewardedCust("11Sep2020", "12Sep2020");
         System.out.println("\nCheap and Best Hotel for rewarded customers: " + cheapBestHotelForRewarded);
 
+        //best rated hotel for regular customers
+        String bestRatedHotel = hotelReservationSystem.getBestRatedHotel("11Sep2020", "12Sep2020");
+        System.out.println("\nBest Rated: " + bestRatedHotel);
 
     }
 }
